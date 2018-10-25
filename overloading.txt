@@ -1,0 +1,57 @@
+#include<iostream.h>
+#include<conio.h>
+#include<process.h>
+class Distance
+{
+private:
+int feet;
+float inches;
+public:
+Distance(): feet(0), inches(0.0){}
+Distance(int ft, float in): feet(ft), inches(in){}
+void getDistance()
+{
+cout<<"enter the feet value";
+cin>>feet;
+cout<<"enter the inches value";
+cin>>inches;
+}
+void showDistance()
+{
+cout<<feet<<"\'-"<<inches<<'\"';
+}
+Distance operator - (Distance) ;
+};
+Distance Distance::operator -(Distance d2)
+{
+int obj1=feet*12+inches;
+int obj2=d2.feet*12+d2.inches;
+if(obj1<obj2)
+{
+cout<<"Subtraction not possible";
+exit (0);
+}
+else
+{
+feet -  d2.feet;
+inches - d2.inches ;
+}
+if(inches>=12.0)
+{
+inches-=12.0;
+feet++;
+}
+return Distance(obj1,obj2);
+}
+int main()
+{
+clrscr();
+Distance d1,d3;
+Distance d2(11,6.25);
+d1.getDistance();
+d3=d1-d2;
+cout<<"d1 ="; d1.showDistance(); cout<<endl;
+cout<<"d2 ="; d2.showDistance(); cout<<endl;
+cout<<"d3 ="; d3.showDistance(); cout<<endl;
+return 0;
+}
